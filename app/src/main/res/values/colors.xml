@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SpaceX-like Dark Theme Colors -->
+    <color name="spaceXDarkBackground">#FF1A1A1A</color>
+    <color name="spaceXSurface">#FF2C2C2C</color>
+    <color name="spaceXPrimary">#FF007AFF</color>
+    <color name="spaceXOnPrimary">#FFFFFFFF</color>
+    <color name="spaceXSecondary">#FF00C7B1</color>
+    <color name="spaceXOnSecondary">#FFFFFFFF</color>
+    <color name="spaceXError">#FFFF4444</color>
+    <color name="spaceXOnError">#FFFFFFFF</color>
+    <color name="spaceXOnBackground">#FFE0E0E0</color>
+    <color name="spaceXOnSurface">#FFE0E0E0</color>
+
+    <!-- Standard Material Colors (for general use) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

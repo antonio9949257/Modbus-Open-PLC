@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ModbusOpenPLC" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/spaceXPrimary</item>
+        <item name="colorPrimaryVariant">@color/spaceXPrimary</item>
+        <item name="colorOnPrimary">@color/spaceXOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/spaceXSecondary</item>
+        <item name="colorSecondaryVariant">@color/spaceXSecondary</item>
+        <item name="colorOnSecondary">@color/spaceXOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/spaceXDarkBackground</item>
+        <item name="android:textColorPrimary">@color/spaceXOnBackground</item>
+        <item name="android:textColorSecondary">@color/spaceXOnSurface</item>
+        <item name="android:dividerHorizontal">@color/spaceXOnSurface</item>
+        <item name="android:backgroundTint">@color/spaceXSurface</item>
+    </style>
+</resources>
