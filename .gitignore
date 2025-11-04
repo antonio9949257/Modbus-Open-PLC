@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+.idea/
+app/src/main/res/drawable/circle_indicator.xml
