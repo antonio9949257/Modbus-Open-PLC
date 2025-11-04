@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- SpaceX-like Dark Theme Colors -->
-    <color name="spaceXDarkBackground">#FF1A1A1A</color>
-    <color name="spaceXSurface">#FF2C2C2C</color>
-    <color name="spaceXPrimary">#FF007AFF</color>
-    <color name="spaceXOnPrimary">#FFFFFFFF</color>
-    <color name="spaceXSecondary">#FF00C7B1</color>
-    <color name="spaceXOnSecondary">#FFFFFFFF</color>
-    <color name="spaceXError">#FFFF4444</color>
-    <color name="spaceXOnError">#FFFFFFFF</color>
-    <color name="spaceXOnBackground">#FFE0E0E0</color>
-    <color name="spaceXOnSurface">#FFE0E0E0</color>
+    <!-- Tesla-like Dark Theme Colors -->
+    <color name="teslaDarkBackground">#FF121212</color> <!-- Very dark, almost black -->
+    <color name="teslaSurface">#FF1E1E1E</color>      <!-- Slightly lighter for cards/surfaces -->
+    <color name="teslaPrimary">#FF007AFF</color>      <!-- A clean blue for primary actions/accents -->
+    <color name="teslaOnPrimary">#FFFFFFFF</color>    <!-- White text on primary -->
+    <color name="teslaSecondary">#FFCC0000</color>    <!-- A subtle red for secondary accents -->
+    <color name="teslaOnSecondary">#FFFFFFFF</color>  <!-- White text on secondary -->
+    <color name="teslaError">#FFB00020</color>        <!-- Deeper, "cooler" red for errors / OFF state -->
+    <color name="teslaOnError">#FFFFFFFF</color>      <!-- White text on error -->
+    <color name="teslaOnBackground">#FFFFFFFF</color> <!-- White text on dark background -->
+    <color name="teslaOnSurface">#FFE0E0E0</color>    <!-- Light grey text on surface -->
+    <color name="teslaDivider">#FF333333</color>      <!-- Dark grey for dividers -->
 
-    <!-- Standard Material Colors (for general use) -->
+    <color name="teslaOnColor">#FF00C853</color>     <!-- Less vibrant green for ON state -->
+
+    <!-- Standard Android Colors (for general use, if needed) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

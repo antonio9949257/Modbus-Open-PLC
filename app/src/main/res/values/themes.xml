@@ -2,20 +2,21 @@
 <resources>
     <style name="Theme.ModbusOpenPLC" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/spaceXPrimary</item>
-        <item name="colorPrimaryVariant">@color/spaceXPrimary</item>
-        <item name="colorOnPrimary">@color/spaceXOnPrimary</item>
+        <item name="colorPrimary">@color/teslaPrimary</item>
+        <item name="colorPrimaryVariant">@color/teslaPrimary</item>
+        <item name="colorOnPrimary">@color/teslaOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/spaceXSecondary</item>
-        <item name="colorSecondaryVariant">@color/spaceXSecondary</item>
-        <item name="colorOnSecondary">@color/spaceXOnSecondary</item>
+        <item name="colorSecondary">@color/teslaSecondary</item>
+        <item name="colorSecondaryVariant">@color/teslaSecondary</item>
+        <item name="colorOnSecondary">@color/teslaOnSecondary</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/teslaDarkBackground</item> <!-- Use a solid dark color for status bar -->
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">@color/spaceXDarkBackground</item>
-        <item name="android:textColorPrimary">@color/spaceXOnBackground</item>
-        <item name="android:textColorSecondary">@color/spaceXOnSurface</item>
-        <item name="android:dividerHorizontal">@color/spaceXOnSurface</item>
-        <item name="android:backgroundTint">@color/spaceXSurface</item>
+        <item name="android:colorBackground">@color/teslaDarkBackground</item>
+        <item name="android:textColorPrimary">@color/teslaOnBackground</item>
+        <item name="android:textColorSecondary">@color/teslaOnSurface</item>
+        <item name="android:dividerHorizontal">@color/teslaDivider</item>
+        <item name="android:backgroundTint">@color/teslaSurface</item>
+        <item name="android:windowBackground">@color/teslaDarkBackground</item> <!-- Ensure window background is dark -->
     </style>
 </resources>

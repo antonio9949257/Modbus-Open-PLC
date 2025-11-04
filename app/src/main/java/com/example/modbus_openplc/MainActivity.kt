@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager // Import GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         // Setup RecyclerViews
         discreteInputsAdapter = ModbusValueAdapter(discreteInputs, isCoil = false) { _, _ -> /* No action for discrete inputs */ }
-        discreteInputsRecyclerView.layoutManager = LinearLayoutManager(this)
+        discreteInputsRecyclerView.layoutManager = GridLayoutManager(this, 4) // Programmatically set GridLayoutManager
         discreteInputsRecyclerView.adapter = discreteInputsAdapter
 
         coilsAdapter = ModbusValueAdapter(coils, isCoil = true) { position, value ->
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        coilsRecyclerView.layoutManager = LinearLayoutManager(this)
+        coilsRecyclerView.layoutManager = GridLayoutManager(this, 4) // Programmatically set GridLayoutManager
         coilsRecyclerView.adapter = coilsAdapter
 
         // Setup button listeners

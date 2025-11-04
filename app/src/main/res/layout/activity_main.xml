@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="?android:attr/colorBackground"
+    android:background="@color/teslaDarkBackground"
     tools:context=".MainActivity">
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_marginBottom="16dp"
         android:textColor="?android:attr/textColorPrimary"
         android:textColorHint="?android:attr/textColorSecondary"
-        android:backgroundTint="@color/spaceXPrimary" />
+        android:backgroundTint="@color/teslaPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,16 +45,16 @@
             android:layout_height="wrap_content"
             android:text="Conectar"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/spaceXPrimary"
-            android:textColor="@color/spaceXOnPrimary"/>
+            android:backgroundTint="@color/teslaPrimary"
+            android:textColor="@color/teslaOnPrimary"/>
 
         <Button
             android:id="@+id/disconnectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Desconectar"
-            android:backgroundTint="@color/spaceXError"
-            android:textColor="@color/spaceXOnError"/>
+            android:backgroundTint="@color/teslaSecondary"
+            android:textColor="@color/teslaOnSecondary"/>
     </LinearLayout>
 
     <TextView
@@ -69,7 +69,7 @@
         android:id="@+id/errorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/spaceXError"
+        android:textColor="@color/teslaError"
         android:layout_marginBottom="16dp"
         android:visibility="gone" />
 
@@ -83,7 +83,7 @@
         android:id="@+id/discreteInputsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entradas Discretas (%IX)"
+        android:text="IX"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="?android:attr/textColorPrimary"
@@ -95,7 +95,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginBottom="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+         />
 
     <View
         android:layout_width="match_parent"
@@ -107,7 +107,7 @@
         android:id="@+id/coilsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bobinas (%QX)"
+        android:text="QX"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="?android:attr/textColorPrimary"
@@ -118,6 +118,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+         />
 
 </LinearLayout>
