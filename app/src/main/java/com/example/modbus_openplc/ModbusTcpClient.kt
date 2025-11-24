@@ -1,6 +1,8 @@
 package com.example.modbus_openplc
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.io.InputStream
@@ -16,6 +18,7 @@ class ClienteModbusTcp(private val direccionIp: String, private val puerto: Int)
     private var flujoEntrada: InputStream? = null
     private var flujoSalida: OutputStream? = null
     private var idTransaccion: Short = 0
+    private val mutex = Mutex()
 
     val estaConectado: Boolean
         get() = socket?.isConnected == true && !socket!!.isClosed
@@ -56,54 +59,68 @@ class ClienteModbusTcp(private val direccionIp: String, private val puerto: Int)
         return idTransaccion
     }
 
-    suspend fun enviarSolicitud(solicitud: ByteArray): Result<ByteArray> = withContext(Dispatchers.IO) {
-        if (!estaConectado) {
-            return@withContext Result.failure(IOException("No conectado al servidor Modbus."))
-        }
-
-        try {
-            flujoSalida?.write(solicitud)
-            flujoSalida?.flush()
-
-            val bufferCabecera = ByteArray(7)
-            var bytesLeidos = 0
-            var totalBytesLeidos = 0
-
-            while (totalBytesLeidos < 7) {
-                bytesLeidos = flujoEntrada?.read(bufferCabecera, totalBytesLeidos, 7 - totalBytesLeidos) ?: -1
-                if (bytesLeidos == -1) {
-                    desconectar()
-                    return@withContext Result.failure(IOException("Servidor Modbus cerró la conexión inesperadamente durante la lectura de la cabecera."))
-                }
-                totalBytesLeidos += bytesLeidos
+    suspend fun enviarSolicitud(solicitud: ByteArray): Result<ByteArray> = mutex.withLock {
+        withContext(Dispatchers.IO) {
+            if (!estaConectado) {
+                return@withContext Result.failure(IOException("No conectado al servidor Modbus."))
             }
 
-            val longitud = ByteBuffer.wrap(bufferCabecera, 4, 2)
-                .order(ByteOrder.BIG_ENDIAN)
-                .short
-                .toInt()
+            try {
+                flujoSalida?.write(solicitud)
+                flujoSalida?.flush()
 
-            val longitudPduYUnidadId = longitud
-            val longitudRespuestaTotal = 6 + longitudPduYUnidadId
+                val bufferCabecera = ByteArray(7)
+                var bytesLeidos = 0
+                var totalBytesLeidos = 0
 
-            val bufferRespuestaCompleta = ByteArray(longitudRespuestaTotal)
-            System.arraycopy(bufferCabecera, 0, bufferRespuestaCompleta, 0, 7) // Copy already read header
-
-            totalBytesLeidos = 7 // Already read 7 bytes
-            while (totalBytesLeidos < longitudRespuestaTotal) {
-                bytesLeidos = flujoEntrada?.read(bufferRespuestaCompleta, totalBytesLeidos, longitudRespuestaTotal - totalBytesLeidos) ?: -1
-                if (bytesLeidos == -1) {
-                    desconectar()
-                    return@withContext Result.failure(IOException("Servidor Modbus cerró la conexión inesperadamente durante la lectura de datos."))
+                while (totalBytesLeidos < 7) {
+                    bytesLeidos =
+                        flujoEntrada?.read(bufferCabecera, totalBytesLeidos, 7 - totalBytesLeidos)
+                            ?: -1
+                    if (bytesLeidos == -1) {
+                        desconectar()
+                        return@withContext Result.failure(IOException("Servidor Modbus cerró la conexión inesperadamente durante la lectura de la cabecera."))
+                    }
+                    totalBytesLeidos += bytesLeidos
                 }
-                totalBytesLeidos += bytesLeidos
+
+                val longitud = ByteBuffer.wrap(bufferCabecera, 4, 2)
+                    .order(ByteOrder.BIG_ENDIAN)
+                    .short
+                    .toInt()
+
+                val longitudPduYUnidadId = longitud
+                val longitudRespuestaTotal = 6 + longitudPduYUnidadId
+
+                val bufferRespuestaCompleta = ByteArray(longitudRespuestaTotal)
+                System.arraycopy(
+                    bufferCabecera,
+                    0,
+                    bufferRespuestaCompleta,
+                    0,
+                    7
+                ) // Copy already read header
+
+                totalBytesLeidos = 7 // Already read 7 bytes
+                while (totalBytesLeidos < longitudRespuestaTotal) {
+                    bytesLeidos = flujoEntrada?.read(
+                        bufferRespuestaCompleta,
+                        totalBytesLeidos,
+                        longitudRespuestaTotal - totalBytesLeidos
+                    ) ?: -1
+                    if (bytesLeidos == -1) {
+                        desconectar()
+                        return@withContext Result.failure(IOException("Servidor Modbus cerró la conexión inesperadamente durante la lectura de datos."))
+                    }
+                    totalBytesLeidos += bytesLeidos
+                }
+
+                Result.success(bufferRespuestaCompleta)
+
+            } catch (e: IOException) {
+                desconectar()
+                Result.failure(e)
             }
-
-            Result.success(bufferRespuestaCompleta)
-
-        } catch (e: IOException) {
-            desconectar()
-            Result.failure(e)
         }
     }
 

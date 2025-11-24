@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 class ModbusValueAdapter(
     private val data: MutableList<Boolean>,
     private val isCoil: Boolean,
-    private val onCoilWrite: (position: Int, value: Boolean) -> Unit
+    private val addressMapping: (position: Int) -> Int = { it },
+    private val onCoilWrite: (address: Int, value: Boolean) -> Unit
 ) : RecyclerView.Adapter<ModbusValueAdapter.ModbusValueViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModbusValueViewHolder {
@@ -22,8 +23,9 @@ class ModbusValueAdapter(
 
     override fun onBindViewHolder(holder: ModbusValueViewHolder, position: Int) {
         val value = data[position]
-        val name = if (isCoil) "QX0.${position + 1}" else "IX0.${position + 1}"
-        holder.bind(name, value, isCoil, onCoilWrite, position)
+        val address = addressMapping(position)
+        val name = if (isCoil) "QX0.${address}" else "IX0.${address}"
+        holder.bind(name, value, isCoil, onCoilWrite, address)
     }
 
     override fun getItemCount(): Int = data.size
@@ -32,7 +34,7 @@ class ModbusValueAdapter(
         private val modbusValueName: TextView = itemView.findViewById(R.id.modbusValueName)
         private val statusButtonContainer: FrameLayout = itemView.findViewById(R.id.statusButtonContainer)
 
-        fun bind(name: String, state: Boolean, isCoil: Boolean, onCoilWrite: (position: Int, value: Boolean) -> Unit, position: Int) {
+        fun bind(name: String, state: Boolean, isCoil: Boolean, onCoilWrite: (address: Int, value: Boolean) -> Unit, address: Int) {
             modbusValueName.text = name
 
             val indicatorDrawable = statusButtonContainer.background as GradientDrawable
@@ -43,7 +45,7 @@ class ModbusValueAdapter(
                 statusButtonContainer.setOnClickListener {
                     // Toggle the state and trigger write
                     val newState = !state
-                    onCoilWrite(position, newState)
+                    onCoilWrite(address, newState)
                     // UI will be updated by the periodic read, so no need to update here immediately
                 }
             } else {
