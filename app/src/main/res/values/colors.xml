@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Gemini-like Gradient Colors -->
+    <color name="geminiGradientStart">#0d1b2a</color>
+    <color name="geminiGradientEnd">#1b263b</color>
+
     <!-- Tesla-like Dark Theme Colors -->
     <color name="teslaDarkBackground">#FF121212</color> <!-- Very dark, almost black -->
     <color name="teslaSurface">#FF1E1E1E</color>      <!-- Slightly lighter for cards/surfaces -->
