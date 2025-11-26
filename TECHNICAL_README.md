@@ -1,4 +1,5 @@
 # Documentación Técnica: Aplicación Android ModbusOpenPLC
+**Estudiante: Armin Daniel Antonio Mendieta** 
 
 Este documento proporciona una visión técnica de la aplicación Android ModbusOpenPLC, detallando su arquitectura, la implementación de la comunicación Modbus, los componentes de la interfaz de usuario y las configuraciones clave.
 
