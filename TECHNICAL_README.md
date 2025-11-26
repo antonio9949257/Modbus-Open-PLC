@@ -119,3 +119,13 @@ El fondo de la aplicación presenta un **degradado similar a Gemini**. Esto se i
 *   **Servicio en Segundo Plano**: Implementar la comunicación Modbus en un servicio en segundo plano para permitir la monitorización incluso cuando la aplicación no está en primer plano.
 *   **Pruebas Unitarias**: Agregar pruebas unitarias exhaustivas para la lógica de comunicación Modbus y los componentes de la interfaz de usuario.
 *   **Configuración de Usuario**: Una pantalla de configuración dedicada para todos los parámetros configurables.
+
+---
+## Nota sobre la implementación de Modbus
+
+Esta aplicación **no utiliza ninguna librería externa específica para Modbus**. La comunicación Modbus TCP está implementada manualmente dentro del proyecto, principalmente en la clase `ClienteModbusTcp.kt`. Se emplean las clases estándar de Java (`Socket`, `InputStream`, `OutputStream`) junto con Kotlin Coroutines para la gestión de operaciones asíncronas, pero toda la lógica de construcción y análisis de mensajes Modbus TCP se desarrolla directamente en el propio código fuente de la aplicación, sin recurrir a paquetes de terceros o frameworks externos de Modbus.
+
+
+
+
+
