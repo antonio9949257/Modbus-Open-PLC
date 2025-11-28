@@ -2,6 +2,8 @@
 
 Esta es una aplicación Android diseñada para interactuar con un servidor Modbus TCP, permitiendo a los usuarios monitorear entradas discretas y bobinas, y controlar (escribir en) bobinas. La aplicación proporciona una interfaz de usuario sencilla para conectarse a un dispositivo Modbus, mostrar datos Modbus en tiempo real y manejar operaciones Modbus básicas.
 
+<img src="app.png" alt="Screen 1" width="500"/>
+
 ## Características
 
 *   **Conexión Modbus TCP:** Establece y gestiona conexiones a servidores Modbus TCP.
